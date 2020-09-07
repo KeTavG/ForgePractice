@@ -1,5 +1,6 @@
 package ketav.practice;
 
+import ketav.practice.util.RegistryHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -10,10 +11,10 @@ import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("prctc")
-public class Practice
-{
+public class Practice {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final String MOD_ID = "prctc";
 
     public Practice() {
         // Register the setup method for modloading
@@ -27,12 +28,13 @@ public class Practice
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+        RegistryHandler.init();
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
 //        // some preinit code
 //        LOGGER.info("HELLO FROM PREINIT");
 //        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
@@ -74,4 +76,5 @@ public class Practice
 //            LOGGER.info("HELLO from Register Block");
 //        }
 //    }
+
 }
